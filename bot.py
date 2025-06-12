@@ -6,8 +6,8 @@ from binance.exceptions import BinanceAPIException
 app = Flask(__name__)
 
 # Cargar las claves API desde variables de entorno (Railway)
-API_KEY = os.getenv("API_KEY")
-API_SECRET = os.getenv("API_SECRET")
+API_KEY = "T5GJ0WAInrn3rm0imAeyyGOOCE5yUswNZiyFFBLKoiDtoC2hZuMtikBUjVYVee9F"
+API_SECRET = "R38h1noXHOWI2xSujRezfD6CdFVTlWW4RkTnTjYKQZuRidp3Tkpg1ye9Eh33tZUs"
 
 # Comprobar que las claves no están vacías
 if not API_KEY or not API_SECRET:
