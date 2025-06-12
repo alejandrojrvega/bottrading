@@ -34,7 +34,7 @@ def webhook():
                 symbol='EURUSDT',
                 side=Client.SIDE_BUY,
                 type=Client.ORDER_TYPE_MARKET,
-                quantity=2  # <-- AJUSTA según tu saldo
+                quantity=45  # <-- AJUSTA según tu saldo
             )
             return jsonify({"message": "Orden de compra ejecutada", "order": order}), 200
 
@@ -43,7 +43,7 @@ def webhook():
                 symbol='EURUSDT',
                 side=Client.SIDE_SELL,
                 type=Client.ORDER_TYPE_MARKET,
-                quantity=2  # <-- AJUSTA según tu saldo
+                quantity=45 # <-- AJUSTA según tu saldo
             )
             return jsonify({"message": "Orden de venta ejecutada", "order": order}), 200
 
