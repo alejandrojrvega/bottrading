@@ -1,34 +1,34 @@
+# bot.py
 from flask import Flask, request
 from binance.client import Client
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
+# Cargar variables de entorno desde .env
 load_dotenv()
 
 api_key = os.getenv("BINANCE_API_KEY")
 api_secret = os.getenv("BINANCE_API_SECRET")
-symbol = os.getenv("SYMBOL")
-quantity = float(os.getenv("QUANTITY"))
 
 client = Client(api_key, api_secret)
+
 app = Flask(__name__)
 
-@app.route('/webhook', methods=['POST'])
+@app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
-    signal = data.get("message", "").lower()
+    action = data.get("action")
 
-    if signal == "buy":
-        order = client.order_market_buy(symbol=symbol, quantity=quantity)
-        print("✅ BUY EXECUTED:", order)
-        return "Buy order sent", 200
+    if action == "buy":
+        print("Ejecutar orden de compra")
+        # client.create_order(...)  # Simulación
+    elif action == "sell":
+        print("Ejecutar orden de venta")
+        # client.create_order(...)  # Simulación
+    else:
+        return {"status": "error", "message": "Acción no reconocida"}, 400
 
-    elif signal == "sell":
-        order = client.order_market_sell(symbol=symbol, quantity=quantity)
-        print("✅ SELL EXECUTED:", order)
-        return "Sell order sent", 200
+    return {"status": "success"}, 200
 
-    return "❌ Invalid signal", 400
-
-if __name__ == '__main__':
-    app.run(port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

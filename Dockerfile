@@ -1,17 +1,19 @@
-# Usa una imagen base de Python
-FROM python:3.12-slim
+# Usa una imagen oficial de Python
+FROM python:3.11-slim
 
-# Establece el directorio de trabajo
+# Crea y establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos del proyecto
-COPY . .
+# Copia los archivos necesarios
+COPY requirements.txt requirements.txt
+COPY bot.py bot.py
+COPY .env .env
 
-# Instala dependencias
+# Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expone el puerto para Flask
+# Expone el puerto que utiliza Flask
 EXPOSE 5000
 
-# Comando para ejecutar tu bot
+# Comando para ejecutar el servidor Flask
 CMD ["python", "bot.py"]
